@@ -1,0 +1,51 @@
+import Foundation
+
+class Person {
+    var age: Int = 0
+
+    init(initialAge: Int) {
+        if initialAge < 0{
+            print("is not valid, setting age to 0.")}
+        self.age = initialAge
+        print(age)
+        // Add some more code to run some checks on initialAge
+    }
+
+    func amIOld() {
+        if age < 0{
+            print("is not valid, setting age to 0.")
+        }
+        if age < 13 && 0 < age {
+            print("You are young.")
+        }
+        if age >= 13 && age < 18{
+            print("You are a teenager.")
+        }
+        else{
+            print("You are old.")
+        }
+        // Do some computations in here and print out the correct statement to the console
+    }
+
+    func yearPasses() {
+        age += age// Increment the age of the person in here
+        print(age)
+    }
+}
+
+let t = Int(readLine()!)!
+
+for _ in 0..<t {
+    let age = Int(readLine()!)!
+    let p = Person(initialAge: age)
+
+    p.amIOld()
+
+    for i in 1...3 {
+        p.yearPasses()
+    }
+
+    p.amIOld()
+
+    print("")
+}
