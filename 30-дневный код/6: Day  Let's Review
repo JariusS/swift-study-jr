@@ -1,0 +1,102 @@
+import Foundation
+import Darwin
+
+let numStrings = Int(readLine()!)!
+
+func printEvenAndOdd(string: String) {
+    // This prints inputString to stderr for debugging:
+    fputs("string: " + string + "\n", stderr)
+var evenIndexed = ""
+var oddIndexed = ""
+	for (index, value) in string.enumerated() {
+    //  print("Item \(index + 1): \(value)")
+    if index == 0 || index % 2 == 0 {
+        evenIndexed.append(value)   
+    }
+}
+    // Print the even-indexed characters
+    // Write your code here
+    print(evenIndexed, terminator: "")
+    // Print a space
+     print(" ", terminator: "")
+for (index, value) in string.enumerated() {
+    // print("Item \(index + 1): \(value)")
+    if index % 2 != 0 {
+        oddIndexed.append(value)
+        
+    }
+}
+    // Print the odd-indexed characters
+    // Write your code here
+    print(oddIndexed, terminator: "")  
+    // Print a newline
+    print()
+}
+
+for _ in 1...numStrings {
+    let inputString = readLine()!
+    printEvenAndOdd(string: inputString)
+}
+-----------------------------------------редакция
+Swift
+import Foundation
+import Darwin
+
+let numStrings = Int(readLine()!)!
+
+func printEvenAndOdd(string: String) {
+    // This prints inputString to stderr for debugging:
+    fputs("string: " + string + "\n", stderr)
+    
+    // Split string into an array of characters
+    let chars = string.characters.map { String($0) }
+
+    var index = 0
+    while index < chars.count {
+        print(chars[index], terminator: "")
+        index = index + 2
+    }
+    print(" ", terminator: "")
+	
+    index = 1
+    while index < chars.count {
+        print(chars[index], terminator: "")
+        index = index + 2
+    }
+    print()
+}
+
+for _ in 1...numStrings {
+    let inputString = readLine()!
+    printEvenAndOdd(string: inputString)
+}
+Swift
+// This is a little cleaner
+import Foundation
+import Darwin
+
+let numStrings = Int(readLine()!)!
+
+func printEveryOther(charArray: [String], startIndex: Int) {
+    var index = startIndex
+    while index < charArray.count {
+        print(charArray[index], terminator: "")
+        index = index + 2
+    }
+}
+
+func printEvenAndOdd(string: String) {
+    // This prints inputString to stderr for debugging:
+    fputs("string: " + string + "\n", stderr)
+    
+    let chars = string.characters.map { String($0) }
+    printEveryOther(charArray: chars, startIndex: 0)
+    print(" ", terminator: "")
+    printEveryOther(charArray: chars, startIndex: 1)
+    print()
+}
+
+for _ in 1...numStrings {
+    let inputString = readLine()!
+    printEvenAndOdd(string: inputString)
+}
