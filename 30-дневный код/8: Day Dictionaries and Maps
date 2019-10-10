@@ -1,0 +1,24 @@
+// Enter your code here. Read input from STDIN. Print output to STDOUT
+import Foundation
+import Darwin
+
+let n = Int(readLine()!)!
+
+var phoneBook = [String: String]()
+
+for _ in 0...n - 1 {
+    // read contacts into phone book
+    var contact = readLine()!.split(separator: " ").map{ String($0)}
+    phoneBook[contact[0]] = contact[1]
+}
+
+var queryName = readLine()
+while queryName != nil {
+    if let number = phoneBook[queryName!] {
+        print("\(queryName!)=\(phoneBook[queryName!]!)")
+    }
+    else {
+        print("Not found")
+    }
+    queryName = readLine()
+}
