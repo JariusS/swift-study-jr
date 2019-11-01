@@ -1,0 +1,51 @@
+    import Foundation
+
+    // read the integer n
+    let n = Int(readLine()!)!
+
+    // read the array
+    let arr = readLine()!.components(separatedBy: " ").map{ Int($0)! }
+    var numSwaps = 0
+    var varArr = arr
+    for i in 0 ..< n {
+        for j in 0 ..< n - 1 {
+            if varArr[j] > varArr[j + 1] {
+                let tmp = varArr[j]
+                varArr[j] = varArr[j + 1]
+                varArr[j + 1] = tmp
+                numSwaps += 1
+            }
+        }
+
+        if numSwaps == 0 {
+            break
+        }
+    }
+    print("Array is sorted in \(numSwaps) swaps.")
+    print("First Element: \(varArr.first!)")
+    print("Last Element: \(varArr.last!)")
+//_________________________________________
+import Foundation
+
+// read the integer n
+let n = Int(readLine()!)!
+
+// read the array
+let arr = readLine()!.components(separatedBy: " ").map{ Int($0)! }
+var numSwaps = 0
+var varArr = arr
+for _ in 0...n {
+    for i in 0..<n{
+    if arr[i] > arr[i-1] {
+        swap(&varArr[i], &varArr[i + 1])
+        numSwaps += 1
+    }
+    }
+    if numSwaps == 0{
+        break 
+    }
+
+}
+print("Array is sorted in \(numSwaps) swaps.")
+print("First Element: \(varArr.first!)")
+print("Last Element: \(varArr.last!)")
