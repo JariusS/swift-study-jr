@@ -10,7 +10,7 @@
     for i in 0 ..< n {
         for j in 0 ..< n - 1 {
             if varArr[j] > varArr[j + 1] {
-                let tmp = varArr[j]
+                var tmp = varArr[j]
                 varArr[j] = varArr[j + 1]
                 varArr[j + 1] = tmp
                 numSwaps += 1
