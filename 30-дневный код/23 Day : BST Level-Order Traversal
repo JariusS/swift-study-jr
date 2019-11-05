@@ -1,0 +1,79 @@
+// Start of Node class
+class Node {
+    var data: Int
+    var left: Node?
+    var right: Node?
+
+    init(d : Int) {
+        data  = d
+    }
+} // End of Node class
+
+// Start of Tree class
+class Tree {
+    func insert(root: Node?, data: Int) -> Node? {
+        if root == nil {
+            return Node(d: data)
+        }
+
+        if data <= (root?.data)! {
+            root?.left = insert(root: root?.left, data: data)
+        } else {
+            root?.right = insert(root: root?.right, data: data)
+        }
+
+        return root
+    }
+
+    var queue = [Node]()
+    func levelOrder(root: Node?) -> Void {
+        if root == nil {
+            return
+        }
+        print(root!.data, terminator: " ")
+        pushChildsToQueue(node: root)
+    }
+    func pushChildsToQueue(node: Node?) {
+        if let leftChild = node?.left {
+            addChilds(node: leftChild)
+        }
+        if let rightChild = node?.right {
+            addChilds(node: rightChild)
+        }
+        if !queue.isEmpty {
+            levelOrder(root: queue.removeFirst())
+        }
+    }
+    func addChilds(node: Node) {
+        queue.append(node)
+    }
+
+////// ---------------------------------
+func levelOrder(root: Node?) {
+    guard let rootNode = root else {
+        return
+    }
+    struct Queue<Element> {
+        private var items = [Element]()
+        mutating func enqueue(item: Element) {
+            items.append(item)
+        }
+        mutating func dequeue() -> Element? {
+            return items.isEmpty ? nil : items.removeFirst()
+        }
+    }
+    var queue = Queue<Node>()
+    var output: String = ""
+    // start here from source node: rootNode
+    queue.enqueue(rootNode)
+    while let node = queue.dequeue() {
+        output += "\(node.data) "
+        if let leftNode = node.left {
+            queue.enqueue(leftNode)
+        }
+        if let rightNode = node.right {
+            queue.enqueue(rightNode)
+        }
+    }        
+    print(output)
+} // End of function levelOrder
